@@ -10,4 +10,4 @@ pymongo
 python-dotenv
 scikit-learn
 tensorflow
-
+certifi
