@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from config import Config
 from db.mongo import init_mongo
+import os
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config.from_object(Config)
