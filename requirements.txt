@@ -7,3 +7,4 @@ tensorflow
 joblib
 bcrypt
 gunicorn
+python-dotenv
