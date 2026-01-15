@@ -1,17 +1,3 @@
-from flask import Blueprint, request, jsonify
-from db.mongo import get_db
-import bcrypt
-from schema import RegisterRequest, LoginRequest
-import random
-
-auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
-
-def hash_password(password: str) -> str:
-    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-
-def verify_password(password: str, hashed: str) -> bool:
-    return bcrypt.checkpw(password.encode('utf-8'), hashed.encode('utf-8'))
-
 @auth_bp.route('/register', methods=['POST'])
 def register():
     try:
@@ -19,7 +5,12 @@ def register():
         req = RegisterRequest(**data)
         db = get_db()
         
-        if db.users_collection.find_one({'email': req.email}):
+        if db is None:
+            return jsonify({'error': 'Database connection failed'}), 500
+        
+        users_collection = db['users']  
+        
+        if users_collection.find_one({'email': req.email}):
             return jsonify({'error': 'Email already registered'}), 400
         
         hashed_pwd = hash_password(req.password)
@@ -37,29 +28,8 @@ def register():
             'transactions': []
         }
         
-        db.users_collection.insert_one(user_doc)
+        users_collection.insert_one(user_doc)
         return jsonify({'message': 'Registration successful', 'balance': balance}), 201
-    
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
-
-@auth_bp.route('/login', methods=['POST'])
-def login():
-    try:
-        data = request.json
-        req = LoginRequest(**data)
-        db = get_db()
-        
-        user = db.users_collection.find_one({'email': req.email})
-        
-        if not user or not verify_password(req.password, user['password']):
-            return jsonify({'error': 'Invalid credentials'}), 401
-        
-        return jsonify({
-            'message': 'Login successful',
-            'email': user['email'],
-            'balance': user['balance']
-        }), 200
     
     except Exception as e:
         return jsonify({'error': str(e)}), 400
