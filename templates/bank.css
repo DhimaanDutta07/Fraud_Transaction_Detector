@@ -1,0 +1,119 @@
+body{
+    background-color: rgb(9, 9, 100);
+}
+
+.head1{
+    background-color:rgb(78, 14, 36);
+    height: 40px;
+    width: 100%;
+    border-radius: 40px;
+    border-color: black 4px;
+    color: rgb(255, 255, 255);
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.m{
+    margin-left: 600px;
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+.r{
+    color: rgb(255, 68, 0);
+}
+
+.head1:hover{
+    background-color:rgb(102, 18, 46);
+    cursor: pointer;
+    transition: 1s ease-in;
+}
+
+.board{
+    background-color: rgb(102, 18, 46);
+    height: 550px;
+    width: 1000px;
+    margin-top: 10px;
+    margin-left: 150px;
+    color: antiquewhite;
+    font-family: sans-serif;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+
+.board:hover{
+
+    border-radius: 20px;
+    transition: 1s ease-in-out;
+    background: linear-gradient(rgb(102, 18, 46),red);
+    cursor: pointer;
+}
+
+.syn{
+    margin-left: 350px;
+    font-size: medium;
+    border-radius: 10px;
+    
+}
+
+#fname{
+    margin-top: 200px;
+}
+
+.p1, .p2, .p4,.p3 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 280px;
+}
+
+
+.bb{
+    margin-left: 450px;
+    margin-top: 40px;
+
+}
+
+.board h1{
+    margin-left: 220px;
+    margin-top: 20px;
+}
+
+.x {
+    color: antiquewhite;
+    margin: 10px 0;
+    font-size: 30px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+.a, .aa,.a1,.a2 {
+    height: 35px;
+    width: 450px;
+    margin: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.bb{
+    height: 50px;
+    width: 200px;
+    border-radius: 30px;
+    margin-left: 400px;
+    cursor: pointer;
+}
+
+.bb:hover{
+    height: 60px;
+    width: 210px;
+    background-color: grey;
+    transition: 0.5s ease;
+}
